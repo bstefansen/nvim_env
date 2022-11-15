@@ -18,7 +18,10 @@ call plug#end()
 map <leader>f :Telescope find_files<CR>
 map <leader>n :NERDTree<CR>
 
+
 lua <<EOF
+vim.cmd("colorscheme nightfox")
+
 require'nvim-treesitter.configs'.setup {
 	  ensure_installed = "c", "cpp",     -- one of "all", "language", or a list of languages
 	    highlight = {
