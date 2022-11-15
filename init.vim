@@ -4,6 +4,7 @@ set autoread
 au CursorHold * checktime
 
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
+Plug 'EdenEast/nightfox.nvim' " Vim-Plug
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
