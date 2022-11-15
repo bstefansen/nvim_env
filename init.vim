@@ -4,6 +4,7 @@ set autoread
 au CursorHold * checktime
 
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
+Plug 'p00f/nvim-ts-rainbow'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'preservim/nerdtree'
@@ -22,5 +23,9 @@ require'nvim-treesitter.configs'.setup {
 	    highlight = {
 		    	enable = true,              -- false will disable the whole extension
 				disable = {},  -- list of language that will be disabled
-				  }
+			},
+	      rainbow = {
+		          enable = true,
+			  extended_mode = true -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+			}
 	    }
