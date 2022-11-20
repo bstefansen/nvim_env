@@ -30,6 +30,16 @@ require'lspconfig'.pyright.setup{}
 
 vim.cmd("colorscheme carbonfox")
 
+require('telescope').setup {
+	pickers = {
+		live_grep = {
+			additional_args = function(opts)
+				return {"--hidden"}
+			end
+		}
+	}
+}
+
 require'nvim-treesitter.configs'.setup {
 	  ensure_installed = "c", "cpp",     -- one of "all", "language", or a list of languages
 	    highlight = {
