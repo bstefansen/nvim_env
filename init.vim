@@ -18,7 +18,9 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 call plug#end()
 
 
-map <leader>f :Telescope find_files<CR>
+map <leader>y :%y+<CR>
+map <leader>f :Telescope find_files hidden=true<CR>
+map <leader>g :Telescope live_grep<CR>
 map <leader>n :NERDTree<CR>
 map <leader>vd :lua vim.lsp.buf.definition()<CR>
 
@@ -26,7 +28,7 @@ map <leader>vd :lua vim.lsp.buf.definition()<CR>
 lua <<EOF
 require'lspconfig'.pyright.setup{}
 
-vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme carbonfox")
 
 require'nvim-treesitter.configs'.setup {
 	  ensure_installed = "c", "cpp",     -- one of "all", "language", or a list of languages
