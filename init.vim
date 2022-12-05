@@ -4,6 +4,7 @@ set autoread
 au CursorHold * checktime
 
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
+Plug 'justinmk/vim-sneak'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
@@ -18,6 +19,11 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 call plug#end()
 
 
+inoremap kk <enter>
+inoremap jj <esc>
+" paste everything from system clipboard
+map <leader>p "+p<CR>
+" copy everything to system clipboard
 map <leader>y :%y+<CR>
 map <leader>f :Telescope find_files hidden=true<CR>
 map <leader>g :Telescope live_grep<CR>
