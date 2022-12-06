@@ -18,6 +18,8 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " or                                , { 'branch': '0.1.x' }
 call plug#end()
 
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
 
 inoremap kk <enter>
 inoremap jj <esc>
