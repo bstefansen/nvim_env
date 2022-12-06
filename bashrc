@@ -1,11 +1,18 @@
 #!/bin/bash
 
+# grep
+alias g="ls | grep"
+
+# vim shortcuts
+alias n="nvim"
+
 # pip shortcuts
 alias ps="pipenv shell"
 alias pe="pip -V"
 
 # git shortcuts
-alias cb="git branch --show-current"
+alias s="git status"
+alias b="git branch --show-current"
 
 # config files
 alias rc="nvim ~/.bashrc"
