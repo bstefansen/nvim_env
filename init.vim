@@ -4,6 +4,7 @@ set autoread
 au CursorHold * checktime
 
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
+Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
