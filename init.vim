@@ -4,6 +4,7 @@ set autoread
 au CursorHold * checktime
 
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
 Plug 'hrsh7th/nvim-cmp'
@@ -32,7 +33,7 @@ map <leader>f :Telescope find_files hidden=true<CR>
 map <leader>g :Telescope live_grep<CR>
 map <leader>n :NERDTree<CR>
 map <leader>vd :lua vim.lsp.buf.definition()<CR>
-
+map <leader>t :!pipenv run pytest tests\unit\ -v --server localhost
 
 lua <<EOF
 require'lspconfig'.pyright.setup{}
