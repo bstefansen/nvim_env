@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# grep
+# stuff
 alias g="ls | grep"
+alias c="clear"
 
 # vim shortcuts
 alias n="nvim"
