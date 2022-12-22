@@ -1,9 +1,14 @@
+set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 set number
 set relativenumber
 set autoread
 au CursorHold * checktime
 
+
+
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
@@ -20,13 +25,20 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 " or                                , { 'branch': '0.1.x' }
 call plug#end()
 
+
+
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
 inoremap kk <enter>
 inoremap jj <esc>
+
+" format json
+map <leader>j :%!jq .<CR>
+
 " paste everything from system clipboard
 map <leader>p "+p<CR>
+
 " copy everything to system clipboard
 map <leader>y :%y+<CR>
 map <leader>f :Telescope find_files hidden=true<CR>
@@ -35,7 +47,10 @@ map <leader>n :NERDTree<CR>
 map <leader>vd :lua vim.lsp.buf.definition()<CR>
 map <leader>t :!pipenv run pytest tests\unit\ -v --server localhost
 
+
+
 lua <<EOF
+require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pyright.setup{}
 
 vim.cmd("colorscheme carbonfox")
