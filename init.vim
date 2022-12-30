@@ -1,3 +1,4 @@
+autocmd FileType nerdtree setlocal relativenumber
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 set number
 set relativenumber
@@ -7,6 +8,7 @@ au CursorHold * checktime
 
 
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -16,6 +18,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
 Plug 'EdenEast/nightfox.nvim' " Vim-Plug
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -50,10 +53,11 @@ map <leader>t :!pipenv run pytest tests\unit\ -v --server localhost
 
 
 lua <<EOF
+require'lspconfig'.luau_lsp.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pyright.setup{}
 
-vim.cmd("colorscheme carbonfox")
+vim.cmd("colorscheme catppuccin-mocha")
 
 require('telescope').setup {
 	pickers = {
