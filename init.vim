@@ -1,3 +1,4 @@
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType nerdtree setlocal relativenumber
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 set number
@@ -5,9 +6,14 @@ set relativenumber
 set autoread
 au CursorHold * checktime
 
-
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
+Plug 'Yggdroot/indentLine'
+Plug 'ap/vim-css-color'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
