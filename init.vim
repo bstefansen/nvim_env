@@ -1,19 +1,30 @@
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType nerdtree setlocal relativenumber
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
+set autoindent expandtab tabstop=4 shiftwidth=4
+set nowrap
 set number
 set relativenumber
+set cursorline
 set autoread
 au CursorHold * checktime
 
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
-Plug 'Yggdroot/indentLine'
-Plug 'ap/vim-css-color'
+" Plug 'Yggdroot/indentLine'
+" Plug 'ap/vim-css-color'
+Plug 'haishanh/night-owl.vim'
+" or with NeoBundle
+" NeoBundle 'haishanh/night-owl.vim'
+" or with Vundle
+" Plugin 'haishanh/night-owl.vim'
+
+""""" enable 24bit true color
+
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
@@ -40,7 +51,7 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
 inoremap kk <enter>
-inoremap jj <esc>
+" inoremap jj <esc>
 
 " format json
 map <leader>j :%!jq .<CR>
@@ -151,3 +162,4 @@ require'nvim-treesitter.configs'.setup {
 
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
