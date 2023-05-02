@@ -2,10 +2,11 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType nerdtree setlocal relativenumber
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 set autoindent expandtab tabstop=4 shiftwidth=4
-set nowrap
+" set nowrap
 set number
 set relativenumber
 set cursorline
+set cursorcolumn
 set autoread
 au CursorHold * checktime
 
@@ -24,6 +25,7 @@ Plug 'haishanh/night-owl.vim'
 if (has("termguicolors"))
  set termguicolors
 endif
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'vim-airline/vim-airline'
@@ -66,6 +68,8 @@ map <leader>g :Telescope live_grep<CR>
 map <leader>n :NERDTree<CR>
 map <leader>vd :lua vim.lsp.buf.definition()<CR>
 map <leader>t :!pipenv run pytest tests\unit\ -v --server localhost
+map <leader>d :Git diff<CR>
+map <leader>s :Git status<CR>
 
 
 
@@ -74,7 +78,28 @@ require'lspconfig'.luau_lsp.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pyright.setup{}
 
-vim.cmd("colorscheme catppuccin-mocha")
+
+require("catppuccin").setup({
+  transparent_background = true,
+  custom_highlights = function(colors)
+    local u = require("catppuccin.utils.colors")
+    return {
+      CursorLine = {
+        bg = u.vary_color(
+          { latte = u.lighten(colors.mantle, 0.70, colors.base) },
+          u.darken(colors.surface0, 0.64, colors.base)
+        ),
+      },
+    }
+  end,
+})
+
+-- setup must be called before loading
+vim.cmd.colorscheme "catppuccin"
+
+
+
+
 
 require('telescope').setup {
 	pickers = {
