@@ -2,7 +2,6 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType nerdtree setlocal relativenumber
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 set autoindent expandtab tabstop=4 shiftwidth=4
-" set nowrap
 set number
 set relativenumber
 set cursorline
@@ -10,21 +9,8 @@ set cursorcolumn
 set autoread
 au CursorHold * checktime
 
+
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
-" Plug 'Yggdroot/indentLine'
-" Plug 'ap/vim-css-color'
-Plug 'haishanh/night-owl.vim'
-" or with NeoBundle
-" NeoBundle 'haishanh/night-owl.vim'
-" or with Vundle
-" Plugin 'haishanh/night-owl.vim'
-
-""""" enable 24bit true color
-
-" If you have vim >=8.0 or Neovim >= 0.1.5
-if (has("termguicolors"))
- set termguicolors
-endif
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
@@ -36,32 +22,19 @@ Plug 'justinmk/vim-sneak'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
-Plug 'EdenEast/nightfox.nvim' " Vim-Plug
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'preservim/nerdtree'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-" or                                , { 'branch': '0.1.x' }
 call plug#end()
-
 
 
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
-
-inoremap kk <enter>
-" inoremap jj <esc>
-
-" format json
 map <leader>j :%!jq .<CR>
-
-" paste everything from system clipboard
 map <leader>p "+p<CR>
-
-" copy everything to system clipboard
 map <leader>y :%y+<CR>
 map <leader>f :Telescope find_files hidden=true<CR>
 map <leader>g :Telescope live_grep<CR>
@@ -70,7 +43,6 @@ map <leader>vd :lua vim.lsp.buf.definition()<CR>
 map <leader>t :!pipenv run pytest tests\unit\ -v --server localhost
 map <leader>d :Git diff<CR>
 map <leader>s :Git status<CR>
-
 
 
 lua <<EOF
