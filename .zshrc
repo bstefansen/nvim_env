@@ -14,10 +14,10 @@ alias vrc="nvim ~/.config/nvim/init.vim"
 alias t="taskell ~"
 alias gssh=". ~/git_ssh_setup.sh"
 alias lp="cd ~/repos/labs-lbxcore-proxy"
-alias ls="nnn -d -A"
-# alias bat="batcat"
+alias ls="nnn -d -A -P p"
 
 
+export NNN_BATTHEME="TwoDark"
 export EDITOR="nvim"
 export NNN_FIFO="/tmp/nnn.fifo nnn"
 export NNN_PLUG='f:finder;o:fzopen;p:preview-tui;d:diffs;t:nmount;v:imgview'
