@@ -128,3 +128,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 PATH=$HOME/go/bin:$PATH
 # export PATH="~/.local/bin"
+
