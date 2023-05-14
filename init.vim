@@ -9,6 +9,7 @@ set cursorcolumn
 set autoread
 au CursorHold * checktime
 
+let NERDTreeShowHidden=1
 let g:clipboard = {
             \   'name': 'WslClipboard',
             \   'copy': {
@@ -23,6 +24,7 @@ let g:clipboard = {
             \ }
 
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
+" Plug 'lambdalisue/glyph-palette.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-orgmode/orgmode'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -44,6 +46,11 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 call plug#end()
 
+" augroup my-glyph-palette
+"   autocmd! *
+"   autocmd FileType fern call glyph_palette#apply()
+"   autocmd FileType nerdtree,startify call glyph_palette#apply()
+" augroup END
 
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
