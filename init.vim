@@ -9,8 +9,22 @@ set cursorcolumn
 set autoread
 au CursorHold * checktime
 
+let g:clipboard = {
+            \   'name': 'WslClipboard',
+            \   'copy': {
+            \      '+': 'clip.exe',
+            \      '*': 'clip.exe',
+            \    },
+            \   'paste': {
+            \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            \   },
+            \   'cache_enabled': 0,
+            \ }
 
 call plug#begin('~/AppData/local/nvim/autoload/plugged')
+Plug 'ryanoasis/vim-devicons'
+Plug 'nvim-orgmode/orgmode'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
@@ -45,12 +59,12 @@ map <leader>d :Git diff<CR>
 map <leader>s :Git status<CR>
 
 
-lua <<EOF
+
+
+lua << EOF
 require'lspconfig'.luau_lsp.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.pyright.setup{}
-
-
 require("catppuccin").setup({
   transparent_background = true,
   custom_highlights = function(colors)
@@ -68,10 +82,6 @@ require("catppuccin").setup({
 
 -- setup must be called before loading
 vim.cmd.colorscheme "catppuccin"
-
-
-
-
 
 require('telescope').setup {
 	pickers = {
@@ -160,3 +170,26 @@ require'nvim-treesitter.configs'.setup {
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+
+-- Load custom treesitter grammar for org filetype
+require('orgmode').setup_ts_grammar()
+
+-- Treesitter configuration
+require('nvim-treesitter.configs').setup {
+  -- If TS highlights are not enabled at all, or disabled via `disable` prop,
+  -- highlighting will fallback to default Vim syntax highlighting
+  highlight = {
+    enable = true,
+    -- Required for spellcheck, some LaTex highlights and
+    -- code block highlights that do not have ts grammar
+    additional_vim_regex_highlighting = {'org'},
+  },
+  ensure_installed = {'org'}, -- Or run :TSUpdate org
+}
+
+require('orgmode').setup({
+  org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
+  org_default_notes_file = '~/Dropbox/org/refile.org',
+})
+
+EOF
